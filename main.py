@@ -31,16 +31,20 @@ def get_tasks_by_id(task_id:int):
         if item['id'] == task_id:
             return item
         
-# IN DEVELOPMENT
 
-# @app.put('/tasks/{tasks_id}')
-# def update_by_id(tasks_id:int,task: Task):
-#     for item in tasks:
-#         if item['id'] == tasks_id:
+# edit task by id
+@app.put('/tasks/{tasks_id}')
+def update_by_id(tasks_id:int,task: Task):
+     for index,item in enumerate(tasks):
+         if item.id == tasks_id:
+             tasks.pop(index)
+             tasks.append(task)
+             return {"message" : "good"}
+     return {"message" : "error"}
 
 
 
-# delete task by id
+# deleting a task by id
 @app.delete('/task/{task_id}')
 def task_del_by_id(task_id:int):
     for index,item in enumerate(tasks):
